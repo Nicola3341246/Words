@@ -32,6 +32,7 @@
   </tbody>
 </table>
 
+
 ### Informieren
 #### Ihr Projekt
 bla bla 
@@ -70,7 +71,6 @@ bla bla
   </tbody>
 </table>
 
-
 #### Testfälle
 <table>
   <thead>
@@ -102,3 +102,47 @@ bla bla
     </tr>
   </tbody>
 </table>
+
+
+### Planen
+<table>
+  <thead>
+    <tr>
+      <th>Nummer</th>
+      <th>Frist</th>
+      <th>Beschreibung</th>
+      <th>Zeit (geplant)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+
+### Entscheiden 
+
+
+### Realisieren
+
+
+### Kontrollieren 
+#### Testprotokoll
+
