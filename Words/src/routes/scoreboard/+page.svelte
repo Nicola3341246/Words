@@ -98,7 +98,11 @@
 	main {
 		text-align: center;
 		padding: 20px;
-		height: 100vh;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.dark {
@@ -119,5 +123,38 @@
 
 	button:hover {
 		background-color: #18ed11;
+	}
+
+	table {
+		width: 80%;
+		max-width: 600px;
+		border-collapse: collapse;
+		margin: 20px 0;
+		font-size: 0.9em;
+		min-width: 300px;
+	}
+
+	th,
+	td {
+		border: 1px solid #ddd;
+		padding: 8px 12px;
+		text-align: left;
+	}
+
+	th {
+		background-color: #04aa6d;
+		color: white;
+	}
+
+	tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+
+	.dark tr:nth-child(even) {
+		background-color: #585858;
+	}
+
+	.dark td {
+		color: #ddd;
 	}
 </style>
