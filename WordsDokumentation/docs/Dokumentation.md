@@ -69,3 +69,36 @@ bla bla
     </tr>
   </tbody>
 </table>
+
+
+#### Testfälle
+<table>
+  <thead>
+    <tr>
+      <th>Nummer</th>
+      <th>Voraussetzung</th>
+      <th>Eingabe</th>
+      <th>Erwartete Ausgabe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2.1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3.1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
