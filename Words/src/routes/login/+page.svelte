@@ -8,6 +8,12 @@
 
 	export let sessionData: any;
 
+	let darkMode = false;
+
+	if (typeof window !== 'undefined') {
+		darkMode = localStorage.getItem('darkMode') === 'true';
+	}
+
 	supabaseClient.auth.getSession().then((session) => {
 		sessionData = session.data;
 
@@ -34,9 +40,9 @@
 	};
 </script>
 
-<main class="Container">
-	<div class="ContentContainer">
-		<h1 class="Title">Login</h1>
+<main class:dark={darkMode}>
+	<div>
+		<h1>Login</h1>
 		<form method="POST" use:enhance={submitSocialLogin}>
 			<button type="submit" formaction="?/login&provider=github" class="btn btn-ghost Button">
 				Login with GitHub
@@ -44,3 +50,36 @@
 		</form>
 	</div>
 </main>
+
+<style>
+	:global(body) {
+		margin: 0;
+		font-family: Arial, sans-serif;
+	}
+
+	main {
+		text-align: center;
+		padding: 20px;
+		height: 100vh;
+	}
+
+	.dark {
+		background-color: #333;
+		color: white;
+	}
+
+	button {
+		padding: 10px 20px;
+		margin-top: 10px;
+		cursor: pointer;
+		background-color: #12e80b;
+		border: none;
+		border-radius: 5px;
+		color: white;
+		font-size: 16px;
+	}
+
+	button:hover {
+		background-color: #18ed11;
+	}
+</style>
