@@ -14,6 +14,16 @@
 		if (error) console.log('Error:', error);
 		else scores = data;
 	});
+
+	function formatDuration(score: number): string {
+		const hours = Math.floor(score / 3600);
+		const minutes = Math.floor((score % 3600) / 60);
+		const seconds = Math.floor(score % 60);
+		const milliseconds = Math.floor((score % 1) * 1000);
+		const nanoseconds = Math.floor(((score % 1) * 1000000) % 1000) * 1000;
+
+		return `${hours}h ${minutes}m ${seconds}s ${milliseconds}ms ${nanoseconds}ns`;
+	}
 </script>
 
 <table>
@@ -23,11 +33,11 @@
 			<th>Score</th>
 		</tr>
 	</thead>
-	<tbody> </tbody><tbody>
+	<tbody>
 		{#each scores as score (score.id)}
 			<tr>
 				<td>{score.username}</td>
-				<td>{score.score}</td>
+				<td>{formatDuration(score.score)}</td>
 			</tr>
 		{/each}
 	</tbody>
