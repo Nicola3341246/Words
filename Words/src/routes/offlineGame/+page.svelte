@@ -12,6 +12,7 @@
 			}
 		});
 		word = await response.text();
+		console.log(word);
 	};
 
 	const returnWordGuess = (id: number, letter: string, status: string): letterGuess => {
@@ -32,32 +33,26 @@
 			letterFrequency.set(letter, (letterFrequency.get(letter) || 0) + 1);
 		}
 
-		// Iterate through each letter in the guessed word
 		for (let i = 0; i < guessedWord.length; i++) {
 			const guessedLetter = guessedWord[i];
 			const actualLetter = wordToGuess[i];
 
-			// Check if the guessed letter exists in the word to guess
+			// Check if letter exists
 			if (wordToGuess.includes(guessedLetter)) {
-				// If the guessed letter is in the correct position
 				if (guessedLetter === actualLetter) {
 					wordGuess.letters.push({ id: i, letter: guessedLetter, status: 'correct' });
 				} else {
-					// If the guessed letter exists but is not in the correct position
 					wordGuess.letters.push({ id: i, letter: guessedLetter, status: 'exists' });
 				}
 			} else {
-				// If the guessed letter does not exist in the word to guess
 				wordGuess.letters.push({ id: i, letter: guessedLetter, status: 'wrong' });
 			}
 
-			// Update the frequency of the actual letter
 			if (letterFrequency.has(actualLetter)) {
 				letterFrequency.set(actualLetter, letterFrequency.get(actualLetter)! - 1);
 			}
 		}
 
-		// Check for letters in the word to guess that were not guessed
 		for (const [letter, frequency] of letterFrequency) {
 			if (frequency > 0) {
 				const index = wordToGuess.indexOf(letter);
@@ -65,7 +60,6 @@
 			}
 		}
 
-		// Sort the letter guesses based on their ID
 		wordGuess.letters.sort((a: any, b: any) => a.id - b.id);
 
 		return wordGuess;
@@ -85,9 +79,7 @@
 		}
 		if (stringGuess.length !== 5) return;
 
-		// check if guess is correct
 		const correctedWord = correctWord(word, stringGuess);
-		console.log(correctedWord.letters);
 
 		// clear inputs
 		const inputContainer = event.currentTarget.querySelector('.inputContainer') as Element;
@@ -97,6 +89,26 @@
 		// update Gui
 		guessList.push(correctedWord);
 		guessList = guessList;
+
+		// Check for win
+		let correctLetters = 0;
+		correctedWord.letters.forEach((letter) => {
+			if (letter.status === 'correct') correctLetters++;
+		});
+
+		if (correctLetters === 5) {
+			alert(
+				'You won!\nThe word was: ' +
+					word +
+					'\nAmount of Guesses: ' +
+					guessList.length +
+					'\nUsed time: 10min'
+			);
+
+			getWord();
+			guessList = [];
+			return;
+		}
 	};
 
 	if (browser) {
