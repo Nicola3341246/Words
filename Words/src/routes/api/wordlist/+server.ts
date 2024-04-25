@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import { error } from "@sveltejs/kit";
 import type { RequestHandler } from "@sveltejs/kit";
 import type { wordlist } from "$lib/index";
@@ -13,7 +12,7 @@ export const GET: RequestHandler = async ({ url }) => {
     if (!worldeList){
         return error(201, "No wordlist");
     }
-    let wordJson = JSON.parse(worldeList) as wordlist;
+    const wordJson = JSON.parse(worldeList) as wordlist;
     const wordlist = wordJson.words
 
     const rd = Math.floor(Math.random() * wordlist.length);
