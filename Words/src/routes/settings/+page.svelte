@@ -40,59 +40,75 @@
     .button:hover {
       background-color: #0056b3;
     }
-  </style>
+</style>
 </head>
 <body>
   <div class="container">
     <h1>Settings</h1>
-    <button class="button" id="nightModeButton">Night Mode</button>
-    <button class="button" id="languageButton">Change Language</button>
+    <button class="button" id="nightModeButton">Toggle Night Mode</button>
+    <button class="button" id="languageButton">Toggle Language</button>
   </div>
 
-    <script lang="ts">
-        const nightModeButton = document.getElementById('nightModeButton');
+  <script>
+    // Function to handle night mode button click
+    const nightModeButton = document.getElementById('nightModeButton');
+    nightModeButton.addEventListener('click', () => {
+      const settings = loadSettings();
+      const updatedSettings = toggleNightMode(settings);
+      updateUI(updatedSettings);
+    });
 
-        // Function to handle night mode button click
-        nightModeButton.addEventListener('click', () => {
-        // Load current settings
-        const settings = loadSettings();
+    // Function to handle language button click
+    const languageButton = document.getElementById('languageButton');
+    languageButton.addEventListener('click', () => {
+      const settings = loadSettings();
+      const updatedSettings = toggleLanguage(settings);
+      updateUI(updatedSettings);
+    });
 
-        // Toggle night mode
-        const updatedSettings = toggleNightMode(settings);
+    // Function to toggle night mode
+    const toggleNightMode = (settings) => {
+      const newSettings = { ...settings, nightMode: !settings.nightMode };
+      saveSettings(newSettings);
+      return newSettings;
+    };
 
-        // Update UI based on new settings
-        updateUI(updatedSettings); 
-        });
+    // Function to toggle language
+    const toggleLanguage = (settings) => {
+      const newLanguage = settings.language === 'english' ? 'german' : 'english';
+      const newSettings = { ...settings, language: newLanguage };
+      saveSettings(newSettings);
+      return newSettings;
+    };
+
+    // Function to update the UI based on settings
+    const updateUI = (settings) => {
+      const nightModeButton = document.getElementById('nightModeButton');
+      nightModeButton.textContent = settings.nightMode ? 'Night Mode: On' : 'Night Mode: Off';
       
+      const languageButton = document.getElementById('languageButton');
+      languageButton.textContent = `language: ${settings.language}`;
+    };
 
-        // Get night mode button and add event listener
-        const nightModeButton = document.getElementById('nightModeButton');
-        nightModeButton.addEventListener('click', () => {
-        const settings = loadSettings();
-        const updatedSettings = toggleNightMode(settings);
-        updateUI(updatedSettings);
-        });
+    // Functions to load and save settings from/to local storage
+    const loadSettings = () => {
+      const savedSettings = localStorage.getItem('settings');
+      if (savedSettings) {
+        return JSON.parse(savedSettings);
+      } else {
+        const defaultSettings = { nightMode: false, language: 'english' };
+        saveSettings(defaultSettings);
+        return defaultSettings;
+      }
+    };
 
-        // Get language button and add event listener
-        const languageButton = document.getElementById('languageButton');
-        languageButton.addEventListener('click', () => {
-        // Your logic for changing language goes here...
-        });
+    const saveSettings = (settings) => {
+      localStorage.setItem('settings', JSON.stringify(settings));
+    };
 
-        // Function to update the UI based on settings
-        const updateUI = (settings) => {
-        if (settings.nightMode) {
-            document.body.style.backgroundColor = '#333';
-            document.body.style.color = '#fff';
-        } else {
-            document.body.style.backgroundColor = '#f5f5f5';
-            document.body.style.color = '#333';
-        }
-        };
-    </script>
+    // Initialize UI with saved settings
+    const initialSettings = loadSettings();
+    updateUI(initialSettings);
+  </script>
 </body>
 </html>
-
-
-
-
