@@ -5,6 +5,12 @@
 
 	let scores: IScore[] = [];
 
+	let darkMode = false;
+
+	if (typeof window !== 'undefined') {
+		darkMode = localStorage.getItem('darkMode') === 'true';
+	}
+
 	onMount(async () => {
 		const { data, error } = await supabaseClient
 			.from<IScore>('scores')
@@ -26,21 +32,56 @@
 	}
 </script>
 
-<table>
-	<thead>
-		<tr>
-			<th>Rank</th>
-			<th>Player</th>
-			<th>Score</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each scores as score, index (score.id)}
+<main class:dark={darkMode}>
+	<table>
+		<thead>
 			<tr>
-				<td>{index + 1}</td>
-				<td>{score.username}</td>
-				<td>{formatDuration(score.score)}</td>
+				<th>Rank</th>
+				<th>Player</th>
+				<th>Score</th>
 			</tr>
-		{/each}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			{#each scores as score, index (score.id)}
+				<tr>
+					<td>{index + 1}</td>
+					<td>{score.username}</td>
+					<td>{formatDuration(score.score)}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</main>
+
+<style>
+	:global(body) {
+		margin: 0;
+		font-family: Arial, sans-serif;
+	}
+
+	main {
+		text-align: center;
+		padding: 20px;
+		height: 100vh;
+	}
+
+	.dark {
+		background-color: #333;
+		color: white;
+	}
+
+	button {
+		padding: 10px 20px;
+		margin-top: 10px;
+		cursor: pointer;
+		background-color: #12e80b;
+		border: none;
+		border-radius: 5px;
+		color: white;
+		font-size: 16px;
+	}
+
+	button:hover {
+		background-color: #18ed11;
+	}
+</style>
