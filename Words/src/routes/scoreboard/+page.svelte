@@ -9,7 +9,7 @@
 		const { data, error } = await supabaseClient
 			.from<IScore>('scores')
 			.select('*')
-			.order('score', { ascending: false });
+			.order('score', { ascending: true });
 
 		if (error) console.log('Error:', error);
 		else scores = data;
@@ -29,13 +29,15 @@
 <table>
 	<thead>
 		<tr>
+			<th>Rank</th>
 			<th>Player</th>
 			<th>Score</th>
 		</tr>
 	</thead>
 	<tbody>
-		{#each scores as score (score.id)}
+		{#each scores as score, index (score.id)}
 			<tr>
+				<td>{index + 1}</td>
 				<td>{score.username}</td>
 				<td>{formatDuration(score.score)}</td>
 			</tr>
