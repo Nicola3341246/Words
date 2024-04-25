@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import type { wordGuess, letterGuess } from '$lib';
+
 	let word: string = '';
 	let guessList: wordGuess[] = [];
+	let startTime: Date = new Date();
 
 	const getWord = async () => {
 		const response = await fetch('/api/wordlist', {
@@ -12,22 +14,17 @@
 			}
 		});
 		word = await response.text();
-		console.log(word);
 	};
 
-	const returnWordGuess = (id: number, letter: string, status: string): letterGuess => {
-		const newletter: letterGuess = {
-			id: id,
-			letter: letter,
-			status: status
-		};
-		return newletter;
+	const resetGame = () => {
+		getWord();
+		guessList = [];
+		startTime = new Date();
 	};
 
 	function correctWord(wordToGuess: string, guessedWord: string): wordGuess {
 		const wordGuess: wordGuess = { letters: [] };
 
-		// Create a map to store the frequency of letters in the word to guess
 		const letterFrequency: Map<string, number> = new Map();
 		for (const letter of wordToGuess) {
 			letterFrequency.set(letter, (letterFrequency.get(letter) || 0) + 1);
@@ -65,10 +62,17 @@
 		return wordGuess;
 	}
 
+	const getElapsedTimeInMiliseconds = () => {
+		const endTime = new Date();
+		return endTime.getTime() - startTime.getTime();
+	};
+
 	const checkGuess = async (event: { currentTarget: EventTarget & HTMLFormElement }) => {
 		if (word === '') return;
 
 		const formData = new FormData(event.currentTarget);
+
+		// Format input
 		let stringGuess = '';
 
 		let formaterIndex = 0;
@@ -97,22 +101,25 @@
 		});
 
 		if (correctLetters === 5) {
+			const elapsedTime = getElapsedTimeInMiliseconds() / 1000;
+
 			alert(
 				'You won!\nThe word was: ' +
 					word +
 					'\nAmount of Guesses: ' +
 					guessList.length +
-					'\nUsed time: 10min'
+					'\nUsed time: ' +
+					elapsedTime +
+					' seconds'
 			);
 
-			getWord();
-			guessList = [];
+			resetGame();
 			return;
 		}
 	};
 
 	if (browser) {
-		getWord();
+		resetGame();
 	}
 </script>
 
