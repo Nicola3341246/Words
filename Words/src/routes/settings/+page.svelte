@@ -1,114 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settings</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-      transition: background-color 0.3s ease;
-    }
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { supabaseClient } from '$lib/supabase';
+	import { onMount } from 'svelte';
 
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+	let darkMode = false;
+	let language = 'english';
 
-    h1 {
-      text-align: center;
-    }
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			darkMode = localStorage.getItem('darkMode') === 'true';
+			language = localStorage.getItem('language') || 'english';
+		}
+	});
 
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 10px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+	export let user: any;
+	const getUser = async () => {
+		const { data, error } = await supabaseClient.auth.getUser();
+		if (error) {
+			user = null;
+			return;
+		}
+		user = data;
+	};
+	getUser();
 
-    .button:hover {
-      background-color: #0056b3;
-    }
+	const logoutUser = async () => {
+		await supabaseClient.auth.signOut();
+		getUser();
+		goto('/');
+	};
+
+	function toggleDarkMode() {
+		darkMode = !darkMode;
+		localStorage.setItem('darkMode', darkMode.toString());
+	}
+
+	function setLanguage(lang: string) {
+		language = lang;
+		localStorage.setItem('language', lang);
+	}
+</script>
+
+<main class:dark={darkMode}>
+	<header>
+		<section>Settings</section>
+		<nav>
+			<button on:click={() => goto('/offlineGame')}>Start Playing</button>
+			<button on:click={() => goto('/scoreboard')}>Scoreboard</button>
+			<button on:click={() => goto('/')}>Back</button>
+			{#if user}
+				<button on:click={() => logoutUser()}>Logout</button>
+			{:else}
+				<button class="HeaderButton" on:click={() => goto('/login')}>Login</button>
+			{/if}
+		</nav>
+	</header>
+	<select on:change={(e) => setLanguage(e.target.value)}>
+		<option value="english" selected={language === 'english'}>English</option>
+		<option value="german" selected={language === 'german'}>German</option>
+	</select>
+	<button on:click={toggleDarkMode}>Toggle Dark Mode</button>
+</main>
+
+<style>
+	:global(body) {
+		margin: 0;
+		font-family: Arial, sans-serif;
+	}
+
+	main {
+		text-align: center;
+		padding: 20px;
+		height: 100vh;
+	}
+
+	.dark {
+		background-color: #333;
+		color: white;
+	}
+
+	header {
+		padding: 10px 0;
+		font-size: 24px;
+	}
+
+	button {
+		padding: 10px 20px;
+		margin-top: 10px;
+		cursor: pointer;
+		background-color: #12e80b;
+		border: none;
+		border-radius: 5px;
+		color: white;
+		font-size: 16px;
+	}
+
+	button:hover {
+		background-color: #18ed11;
+	}
 </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Settings</h1>
-    <button class="button" id="nightModeButton">Toggle Night Mode</button>
-    <button class="button" id="languageButton">Toggle Language</button>
-  </div>
-
-  <script>
-    // Function to handle night mode button click
-    const nightModeButton = document.getElementById('nightModeButton');
-    nightModeButton.addEventListener('click', () => {
-      const settings = loadSettings();
-      const updatedSettings = toggleNightMode(settings);
-      updateUI(updatedSettings);
-    });
-
-    // Function to handle language button click
-    const languageButton = document.getElementById('languageButton');
-    languageButton.addEventListener('click', () => {
-      const settings = loadSettings();
-      const updatedSettings = toggleLanguage(settings);
-      updateUI(updatedSettings);
-    });
-
-    // Function to toggle night mode
-    const toggleNightMode = (settings) => {
-      const newSettings = { ...settings, nightMode: !settings.nightMode };
-      saveSettings(newSettings);
-      return newSettings;
-    };
-
-    // Function to toggle language
-    const toggleLanguage = (settings) => {
-      const newLanguage = settings.language === 'english' ? 'german' : 'english';
-      const newSettings = { ...settings, language: newLanguage };
-      saveSettings(newSettings);
-      return newSettings;
-    };
-
-    // Function to update the UI based on settings
-    const updateUI = (settings) => {
-      const nightModeButton = document.getElementById('nightModeButton');
-      nightModeButton.textContent = settings.nightMode ? 'Night Mode: On' : 'Night Mode: Off';
-      
-      const languageButton = document.getElementById('languageButton');
-      languageButton.textContent = `language: ${settings.language}`;
-    };
-
-    // Functions to load and save settings from/to local storage
-    const loadSettings = () => {
-      const savedSettings = localStorage.getItem('settings');
-      if (savedSettings) {
-        return JSON.parse(savedSettings);
-      } else {
-        const defaultSettings = { nightMode: false, language: 'english' };
-        saveSettings(defaultSettings);
-        return defaultSettings;
-      }
-    };
-
-    const saveSettings = (settings) => {
-      localStorage.setItem('settings', JSON.stringify(settings));
-    };
-
-    // Initialize UI with saved settings
-    const initialSettings = loadSettings();
-    updateUI(initialSettings);
-  </script>
-</body>
-</html>
