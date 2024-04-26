@@ -4,10 +4,11 @@
 
 	let word: string = '';
 	let guessList: wordGuess[] = [];
-	let startTime: Date = new Date();
+	let startTime: Date = new Date(); 
+	const language = localStorage.getItem("language") as string|| "english";
 
-	const getWord = async () => {
-		const response = await fetch('/api/wordlist', {
+	const getWord = async (url: string) => {
+		const response = await fetch(url, {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json'
@@ -16,8 +17,10 @@
 		word = await response.text();
 	};
 
+	const getLanguage = async () {
+
+	}
 	const resetGame = () => {
-		getWord();
 		guessList = [];
 		startTime = new Date();
 	};
