@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { supabaseClient } from '$lib/supabase';
-
+	import Header from '../../components/Header.svelte';
+	
 	let darkMode = false;
 
 	if (typeof window !== 'undefined') {
@@ -17,33 +18,13 @@
 		}
 
 		user = data;
+		console.log(data);
 	};
 	getUser();
-
-	const logoutUser = async () => {
-		await supabaseClient.auth.signOut();
-		getUser();
-		goto('/');
-	};
 </script>
 
 <main class:dark={darkMode}>
-	<header>
-		{#if user}
-			<section>Welcome, {user.user.user_metadata.name}</section>
-		{:else}
-			<section>Welcome, Guest</section>
-		{/if}
-		<nav>
-			<button on:click={() => goto('/offlineGame')}>Start Playing</button>
-			<button on:click={() => goto('/scoreboard')}>Scoreboard</button>
-			{#if user}
-				<button on:click={() => logoutUser()}>Logout</button>
-			{:else}
-				<button class="HeaderButton" on:click={() => goto('/login')}>Login</button>
-			{/if}
-		</nav>
-	</header>
+	<Header />
 	<div>
 		<h1>Wordle</h1>
 		<button on:click={() => goto('/offlineGame')}>Start Playing</button>

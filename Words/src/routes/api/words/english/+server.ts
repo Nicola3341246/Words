@@ -1,7 +1,7 @@
 import { error } from "@sveltejs/kit";
 import type { RequestHandler } from "@sveltejs/kit";
 import type { wordlist } from "$lib/index";
-import worldeList from "./wordle-La.json?raw"
+import worldeList from "./wordlist-english.json?raw"
 
 export const GET: RequestHandler = async ({ url }) => {
     const one = 1;
@@ -16,5 +16,5 @@ export const GET: RequestHandler = async ({ url }) => {
     const wordlist = wordJson.words
 
     const rd = Math.floor(Math.random() * wordlist.length);
-	return new Response(wordlist[rd]);
+    return new Response(wordlist[rd].toLowerCase());
 };

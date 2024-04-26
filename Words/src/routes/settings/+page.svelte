@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
-
+	import Header from '../../components/Header.svelte';
+	
 	let darkMode = false;
 	let language = 'english';
 
@@ -12,23 +11,6 @@
 			language = localStorage.getItem('language') || 'english';
 		}
 	});
-
-	export let user: any;
-	const getUser = async () => {
-		const { data, error } = await supabaseClient.auth.getUser();
-		if (error) {
-			user = null;
-			return;
-		}
-		user = data;
-	};
-	getUser();
-
-	const logoutUser = async () => {
-		await supabaseClient.auth.signOut();
-		getUser();
-		goto('/');
-	};
 
 	function toggleDarkMode() {
 		darkMode = !darkMode;
@@ -42,19 +24,7 @@
 </script>
 
 <main class:dark={darkMode}>
-	<header>
-		<section>Settings</section>
-		<nav>
-			<button on:click={() => goto('/offlineGame')}>Start Playing</button>
-			<button on:click={() => goto('/scoreboard')}>Scoreboard</button>
-			<button on:click={() => goto('/')}>Back</button>
-			{#if user}
-				<button on:click={() => logoutUser()}>Logout</button>
-			{:else}
-				<button class="HeaderButton" on:click={() => goto('/login')}>Login</button>
-			{/if}
-		</nav>
-	</header>
+	<Header />
 	<select on:change={(e) => setLanguage(e.target.value)}>
 		<option value="english" selected={language === 'english'}>English</option>
 		<option value="german" selected={language === 'german'}>German</option>

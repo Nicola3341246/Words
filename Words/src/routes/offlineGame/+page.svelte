@@ -1,13 +1,25 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import type { wordGuess, letterGuess } from '$lib';
+	import { onMount } from 'svelte';
+	import Header from '../../components/Header.svelte';
 
 	let word: string = '';
 	let guessList: wordGuess[] = [];
-	let startTime: Date = new Date();
+	let startTime: Date = new Date(); 
+	const language = localStorage.getItem("language") as string|| "english";
 
-	const getWord = async () => {
-		const response = await fetch('/api/wordlist', {
+	let darkMode = false;
+
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			darkMode = localStorage.getItem('darkMode') === 'true';
+		}
+	});
+
+
+	const getWordList = async (language: string) => {
+		const response = await fetch(`/api/words/${language}`, {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json'
@@ -16,8 +28,10 @@
 		word = await response.text();
 	};
 
+	getWordList(language);
+
 	const resetGame = () => {
-		getWord();
+		getWordList(language);
 		guessList = [];
 		startTime = new Date();
 	};
@@ -94,6 +108,7 @@
 		guessList.push(correctedWord);
 		guessList = guessList;
 
+		console.log(word, stringGuess, correctedWord);
 		// Check for win
 		let correctLetters = 0;
 		correctedWord.letters.forEach((letter) => {
@@ -123,8 +138,10 @@
 	}
 </script>
 
-<div>
+<main class:dark={darkMode}>
+	<Header />
 	<div>
+		<h1>Language: {language}<h1>
 		{#if word === ''}
 			<div>No</div>
 		{:else}
@@ -159,7 +176,7 @@
 			</form>
 		{/if}
 	</div>
-</div>
+</main>
 
 <style>
 	.oldGuess {
@@ -206,5 +223,41 @@
 		width: 150px;
 		height: 50px;
 		font-size: 20px;
+	}
+
+	:global(body) {
+		margin: 0;
+		font-family: Arial, sans-serif;
+	}
+
+	main {
+		text-align: center;
+		padding: 20px;
+		height: 100vh;
+	}
+
+	.dark {
+		background-color: #333;
+		color: white;
+	}
+
+	header {
+		padding: 10px 0;
+		font-size: 24px;
+	}
+
+	button {
+		padding: 10px 20px;
+		margin-top: 10px;
+		cursor: pointer;
+		background-color: #12e80b;
+		border: none;
+		border-radius: 5px;
+		color: white;
+		font-size: 16px;
+	}
+
+	button:hover {
+		background-color: #18ed11;
 	}
 </style>
