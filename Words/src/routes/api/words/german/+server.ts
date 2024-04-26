@@ -1,7 +1,7 @@
 import { error } from "@sveltejs/kit";
 import type { RequestHandler } from "@sveltejs/kit";
 import type { wordlist } from "$lib/index";
-import wordleList from ".wordlist-german.?raw"
+import worldeList from "./wordlist-german.json?raw"
 
 export const GET: RequestHandler = async ({ url }) => {
     const one = 1;
