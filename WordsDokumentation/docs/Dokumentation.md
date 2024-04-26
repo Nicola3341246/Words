@@ -7,9 +7,8 @@ Das ist die Dokumentation unseres [Projekts](https://github.com/Nicola3341246/Wo
 
 ### Inhaltsverzeichnis
 
-- [Dokumentation - TaskHub App](#dokumentation)
-  - [Inhaltsverzeichnis](#inhaltsverzeichnis)
-  - [Projektberichte](#projektberichte)
+- [Dokumentation](#dokumentation)
+    - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [IPERKA](#iperka)
     - [Informieren](#informieren)
     - [Planen](#planen)
@@ -21,14 +20,14 @@ Das ist die Dokumentation unseres [Projekts](https://github.com/Nicola3341246/Wo
   - [Technologien](#technologien)
   - [Quellen](#quellen)
   - [Lokale Entwicklungsumgebung](#lokale-entwicklungsumgebung)
-    - [Lokale Entwicklungsumgebung aufsetzen](#Lokale-Entwicklungsumgebung-aufsetzen)
-    - [Vorbereitung](#Vorbereitung)
-    - [Dependencies mit NPM installieren](#Dependencies-mit-NPM-installieren)
+    - [Lokale Entwicklungsumgebung aufsetzen](#lokale-entwicklungsumgebung-aufsetzen)
+      - [Vorbereitung](#vorbereitung)
+      - [Dependencies mit NPM installieren](#dependencies-mit-npm-installieren)
+      - [Projekt starten](#projekt-starten)
   - [Anforderungen](#anforderungen)
-  - [Arbeitspakete](#arbeitspakete)
   - [Ausführung](#ausführung)
-  - [Testen](#testen)
     - [Testumgebungen](#testumgebungen)
+      - [Manuell (Per Hand):](#manuell-per-hand)
   - [Testfälle](#testfälle)
     - [Testprotokoll](#testprotokoll)
     - [Testbericht](#testbericht)
@@ -161,7 +160,20 @@ Falls das Backend nicht auf http://localhost:8080/ gehostet wird muss man dies i
 
 | Anf.-Nr. | Muss/<br />Kann | funk./<br />qual. | Beschreibung |
 | :--------- | :---------------- | ------------------- | :------------- |
-| 1.       | Muss            | funk.             |              |
+| 1.       | Muss            | funk.             | Das Spiel soll ein Login haben |
+| 1.       | Muss            | funk.             | Das Spiel soll drei Unterseiten haben, eine Startseite, eine Spielseite und eine Seite für Sprach- und Designeinstellungen. |
+| 1.       | Muss            | funk.             | Auf der Startseite, soll der Benutzer das Spiel starten können oder auf die Einstellungen wechseln können |
+| 1.       | Muss            | funk.             | In den Einstellungen soll der Benutzer die Sprache des Spiels ändern können |
+| 1.       | Muss            | funk.             | In den Einstellungen soll der Benutzer einen dark und light Modus einstellen können |
+| 1.       | Muss            | funk.             | Das Spiel soll auf englisch und auf deutsch gespielt werden können |
+| 1.       | Muss            | funk.             | Wenn der Benutzer auf der Startseite das Spiel startet hat er unendliche Rateversuche |
+| 1.       | Muss            | funk.             | Der Spieler soll in Felder schreiben können, um das Wort zu erraten |
+| 1.       | Muss            | funk.             | Wenn der Spieler ein Buchstaben richtig hat, soll dieser gelb angezeigt werden |
+| 1.       | Muss            | funk.             | Wenn der Spieler einen Buchstaben richtig hat und er an der richtigen Stelle staht, soll er grün angezeigt werden |
+| 1.       | Muss            | funk.             | Die Ratezeit soll gemessen und in einer Rangliste eingetragen werden |
+| 1.       | Muss            | funk.             | Von jedem Spieler wird die Ratezeit in eine Rangliste eingetragen |
+| 1.       | Muss            | funk.             | Der Spieler soll sich die Rangliste auf der Startseite anschauen können |
+| 1.       | Muss            | funk.             | Wenn der Spieler das Wort richtig erraten hat, soll er das Spiel neu starten können |
 
 :::info
 1x Arbeitspaket = 45 Minuten (eine Schullektion) <br />
