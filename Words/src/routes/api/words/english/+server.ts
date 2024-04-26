@@ -16,5 +16,5 @@ export const GET: RequestHandler = async ({ url }) => {
     const wordlist = wordJson.words
 
     const rd = Math.floor(Math.random() * wordlist.length);
-	return new Response(wordlist[rd].toLowerCase());
+    return new Response(wordlist[rd].toLowerCase());
 };
