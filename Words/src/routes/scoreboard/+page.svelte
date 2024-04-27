@@ -10,6 +10,11 @@
 
 	if (typeof window !== 'undefined') {
 		darkMode = localStorage.getItem('darkMode') === 'true';
+		if (darkMode) {
+			document.body.style.backgroundColor = '#333';
+		} else {
+			document.body.style.backgroundColor = 'white';
+		}
 	}
 
 	onMount(async () => {
@@ -59,8 +64,6 @@
 	:global(body) {
 		margin: 0;
 		font-family: Arial, sans-serif;
-		background-color: #333;
-		height: 100%;
 	}
 
 	main {
@@ -75,7 +78,6 @@
 
 	.dark {
 		background-color: #333;
-		color: white;
 	}
 
 	table {
