@@ -38,7 +38,7 @@
 			<button on:click={() => goto('/settings')}>Settings</button>
 		{/if}
 		{#if currentRoute != '/main'}
-			<button on:click={() => goto('/Back')}>back</button>
+			<button on:click={() => goto('/main')}>Back</button>
 		{/if}
 		{#if user !== null}
 			<button on:click={() => logoutUser()}>Logout</button>
