@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { supabaseClient } from '$lib/supabase';
 	import type { IScore } from '$lib/types';
-	import { goto } from '$app/navigation';
 	import Header from '../../components/Header.svelte';
 	let scores: IScore[] = [];
 
