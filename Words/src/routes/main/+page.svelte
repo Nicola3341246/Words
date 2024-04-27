@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { supabaseClient } from '$lib/supabase';
 	import Header from '../../components/Header.svelte';
 
 	let darkMode = false;
