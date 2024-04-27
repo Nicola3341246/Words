@@ -127,7 +127,6 @@
 				if (error) {
 					return null;
 				}
-				console.log(data);
 				data;
 
 				const score: IScore = {
