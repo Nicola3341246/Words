@@ -9,22 +9,20 @@
 		goto('/');
 	};
 
-	let user: any;
 	const getUser = async () => {
 		const { data, error } = await supabaseClient.auth.getUser();
 		if (error) {
-			user = null;
-			return;
+			return null;
 		}
-
 		user = data;
 	};
-	getUser();
 
+	let user: any = null;
 	let currentRoute = '';
 
 	onMount(() => {
 		currentRoute = window.location.pathname;
+		getUser();
 	});
 </script>
 
@@ -36,16 +34,13 @@
 		{#if currentRoute != '/scoreboard'}
 			<button on:click={() => goto('/scoreboard')}>Scoreboard</button>
 		{/if}
-		{#if currentRoute != '/settings'}
-			<button on:click={() => goto('/settings')}>Settings</button>
-		{/if}
 		{#if currentRoute != 'settings'}
 			<button on:click={() => goto('/settings')}>Settings</button>
 		{/if}
 		{#if currentRoute != '/main'}
-			<button on:click={() => goto('/Back')}>Start Playing</button>
+			<button on:click={() => goto('/Back')}>back</button>
 		{/if}
-		{#if user}
+		{#if user !== null}
 			<button on:click={() => logoutUser()}>Logout</button>
 		{:else}
 			<button class="HeaderButton" on:click={() => goto('/login')}>Login</button>
