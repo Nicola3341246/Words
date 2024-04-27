@@ -34,7 +34,7 @@
 	const resetGame = () => {
 		getWordList(language);
 		guessList = [];
-		startTime = new Date();
+		startTime = new Date(Date.now());
 	};
 
 	function correctWord(wordToGuess: string, guessedWord: string): wordGuess {
@@ -201,7 +201,7 @@
 							<input class="wordinput" id="input4" name="input" minlength="1" maxlength="1" />
 							<input class="wordinput" id="input5" name="input" minlength="1" maxlength="1" />
 						</div>
-						<button class="submitButton">Check Guess</button>
+						<button>Check Guess</button>
 					</form>
 				{/if}
 			</h1>
@@ -249,13 +249,6 @@
 		font-size: 30px;
 		text-align: center;
 	}
-
-	.submitButton {
-		width: 150px;
-		height: 50px;
-		font-size: 20px;
-	}
-
 	:global(body) {
 		margin: 0;
 		font-family: Arial, sans-serif;
