@@ -18,12 +18,12 @@
 
 	onMount(async () => {
 		const { data, error } = await supabaseClient
-			.from<IScore>('scores')
+			.from<string, IScore>('scores')
 			.select('*')
 			.order('score', { ascending: true });
 
 		if (error) alert("Couldn't fetch scores");
-		else scores = data;
+		else scores = data as IScore[];
 	});
 
 	function formatDuration(score: number): string {
