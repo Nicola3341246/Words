@@ -22,7 +22,7 @@
 			.select('*')
 			.order('score', { ascending: true });
 
-		if (error) console.log('Error:', error);
+		if (error) alert("Couldn't fetch scores");
 		else scores = data;
 	});
 
