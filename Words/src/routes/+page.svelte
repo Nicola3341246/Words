@@ -55,22 +55,6 @@
 		color: white;
 	}
 
-	header.Header {
-		background-color: #f0f0f0;
-		padding: 10px 0;
-		font-size: 24px;
-	}
-
-	.ContentContainer {
-		padding: 20px;
-		border: 1px solid #ccc;
-		margin-top: 20px;
-	}
-
-	.Title {
-		color: #333;
-	}
-
 	button {
 		padding: 10px 20px;
 		margin-top: 10px;
