@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Header from '../../components/Header.svelte';
-	
+
 	let darkMode = false;
 	let language = 'english';
 
@@ -15,6 +15,12 @@
 	function toggleDarkMode() {
 		darkMode = !darkMode;
 		localStorage.setItem('darkMode', darkMode.toString());
+
+		if (darkMode) {
+			document.body.style.backgroundColor = '#333';
+		} else {
+			document.body.style.backgroundColor = 'white';
+		}
 	}
 
 	function setLanguage(lang: string) {
@@ -49,11 +55,6 @@
 		color: white;
 	}
 
-	header {
-		padding: 10px 0;
-		font-size: 24px;
-	}
-
 	button {
 		padding: 10px 20px;
 		margin-top: 10px;
@@ -67,5 +68,12 @@
 
 	button:hover {
 		background-color: #18ed11;
+	}
+
+	select {
+		padding: 10px;
+		font-size: 16px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
 	}
 </style>

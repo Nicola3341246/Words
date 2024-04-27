@@ -1,26 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { supabaseClient } from '$lib/supabase';
 	import Header from '../../components/Header.svelte';
-	
+
 	let darkMode = false;
 
 	if (typeof window !== 'undefined') {
 		darkMode = localStorage.getItem('darkMode') === 'true';
 	}
-
-	export let user: any;
-	const getUser = async () => {
-		const { data, error } = await supabaseClient.auth.getUser();
-		if (error) {
-			user = null;
-			return;
-		}
-
-		user = data;
-		console.log(data);
-	};
-	getUser();
 </script>
 
 <main class:dark={darkMode}>
@@ -46,11 +32,6 @@
 	.dark {
 		background-color: #333;
 		color: white;
-	}
-
-	header {
-		padding: 10px 0;
-		font-size: 24px;
 	}
 
 	button {

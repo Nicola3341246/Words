@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import { supabaseClient } from '$lib/supabase';
 	import { goto } from '$app/navigation';
-	import type { SubmitFunction } from '@sveltejs/kit';
 	import { browser } from '$app/environment';
+	import Header from '../components/Header.svelte';
 
 	export let data: any;
 	let darkMode = false;
@@ -22,6 +21,7 @@
 </script>
 
 <main class:dark={darkMode}>
+	<Header />
 	{#if data.session == null}
 		<div>
 			<h1>Wordle</h1>
@@ -53,22 +53,6 @@
 	.dark {
 		background-color: #333;
 		color: white;
-	}
-
-	header.Header {
-		background-color: #f0f0f0;
-		padding: 10px 0;
-		font-size: 24px;
-	}
-
-	.ContentContainer {
-		padding: 20px;
-		border: 1px solid #ccc;
-		margin-top: 20px;
-	}
-
-	.Title {
-		color: #333;
 	}
 
 	button {

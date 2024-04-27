@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { supabaseClient } from '$lib/supabase';
 	import type { IScore } from '$lib/types';
-	import { goto } from '$app/navigation';
 	import Header from '../../components/Header.svelte';
 	let scores: IScore[] = [];
 
@@ -10,16 +9,21 @@
 
 	if (typeof window !== 'undefined') {
 		darkMode = localStorage.getItem('darkMode') === 'true';
+		if (darkMode) {
+			document.body.style.backgroundColor = '#333';
+		} else {
+			document.body.style.backgroundColor = 'white';
+		}
 	}
 
 	onMount(async () => {
 		const { data, error } = await supabaseClient
-			.from<IScore>('scores')
+			.from<string, IScore>('scores')
 			.select('*')
 			.order('score', { ascending: true });
 
-		if (error) console.log('Error:', error);
-		else scores = data;
+		if (error) alert("Couldn't fetch scores");
+		else scores = data as IScore[];
 	});
 
 	function formatDuration(score: number): string {
@@ -73,22 +77,6 @@
 
 	.dark {
 		background-color: #333;
-		color: white;
-	}
-
-	button {
-		padding: 10px 20px;
-		margin-top: 10px;
-		cursor: pointer;
-		background-color: #12e80b;
-		border: none;
-		border-radius: 5px;
-		color: white;
-		font-size: 16px;
-	}
-
-	button:hover {
-		background-color: #18ed11;
 	}
 
 	table {
