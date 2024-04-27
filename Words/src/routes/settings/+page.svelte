@@ -63,4 +63,11 @@
 	button:hover {
 		background-color: #18ed11;
 	}
+
+	select {
+		padding: 10px;
+		font-size: 16px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+	}
 </style>
