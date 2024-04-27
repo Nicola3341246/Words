@@ -34,7 +34,7 @@
 		{#if currentRoute != '/scoreboard'}
 			<button on:click={() => goto('/scoreboard')}>Scoreboard</button>
 		{/if}
-		{#if currentRoute != 'settings'}
+		{#if currentRoute != '/settings'}
 			<button on:click={() => goto('/settings')}>Settings</button>
 		{/if}
 		{#if currentRoute != '/main'}
