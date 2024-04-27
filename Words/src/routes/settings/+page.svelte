@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Header from '../../components/Header.svelte';
-	
+
 	let darkMode = false;
 	let language = 'english';
 
@@ -47,11 +47,6 @@
 	.dark {
 		background-color: #333;
 		color: white;
-	}
-
-	header {
-		padding: 10px 0;
-		font-size: 24px;
 	}
 
 	button {
