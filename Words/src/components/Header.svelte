@@ -1,40 +1,15 @@
-<header>
-    <nav>
-        {#if currentRoute !="/offlineGame"}
-        <button on:click={() => goto('/offlineGame')}>Start Playing</button>
-        {/if}
-        {#if currentRoute != "/scoreboard"}
-        <button on:click={() => goto('/scoreboard')}>Scoreboard</button>
-        {/if}
-        {#if currentRoute != "/settings"}
-        <button on:click={() => goto('/settings')}>Settings</button>
-        {/if}
-        {#if currentRoute !="settings"}
-        <button on:click={() => goto('/settings')}>Settings</button>
-        {/if}
-        {#if currentRoute !="/main"}
-        <button on:click={() => goto('/Back')}>Start Playing</button>
-        {/if}
-        {#if user}
-            <button on:click={() => logoutUser()}>Logout</button>
-        {:else}
-            <button class="HeaderButton" on:click={() => goto('/login')}>Login</button>
-        {/if}
-    </nav>
-</header>
-
 <script lang="ts">
-    import { goto } from '$app/navigation';
+	import { goto } from '$app/navigation';
 	import { supabaseClient } from '$lib/supabase';
-    import { onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
-    const logoutUser = async () => {
+	const logoutUser = async () => {
 		await supabaseClient.auth.signOut();
 		getUser();
 		goto('/');
 	};
 
-    export let user: any;
+	export let user: any = null;
 	const getUser = async () => {
 		const { data, error } = await supabaseClient.auth.getUser();
 		if (error) {
@@ -46,12 +21,37 @@
 	};
 	getUser();
 
-    let currentRoute = '';
+	let currentRoute = '';
 
-    onMount(() => {
-    currentRoute = window.location.pathname;
-}); 
+	onMount(() => {
+		currentRoute = window.location.pathname;
+	});
 </script>
+
+<header>
+	<nav>
+		{#if currentRoute != '/offlineGame'}
+			<button on:click={() => goto('/offlineGame')}>Start Playing</button>
+		{/if}
+		{#if currentRoute != '/scoreboard'}
+			<button on:click={() => goto('/scoreboard')}>Scoreboard</button>
+		{/if}
+		{#if currentRoute != '/settings'}
+			<button on:click={() => goto('/settings')}>Settings</button>
+		{/if}
+		{#if currentRoute != 'settings'}
+			<button on:click={() => goto('/settings')}>Settings</button>
+		{/if}
+		{#if currentRoute != '/main'}
+			<button on:click={() => goto('/Back')}>Start Playing</button>
+		{/if}
+		{#if user}
+			<button on:click={() => logoutUser()}>Logout</button>
+		{:else}
+			<button class="HeaderButton" on:click={() => goto('/login')}>Login</button>
+		{/if}
+	</nav>
+</header>
 
 <style>
 	header {
