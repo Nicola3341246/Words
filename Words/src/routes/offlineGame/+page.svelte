@@ -16,6 +16,11 @@
 	onMount(() => {
 		if (typeof window !== 'undefined') {
 			darkMode = localStorage.getItem('darkMode') === 'true';
+			if (darkMode) {
+				document.body.style.backgroundColor = '#333';
+			} else {
+				document.body.style.backgroundColor = 'white';
+			}
 		}
 	});
 
