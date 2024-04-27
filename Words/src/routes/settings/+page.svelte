@@ -15,6 +15,12 @@
 	function toggleDarkMode() {
 		darkMode = !darkMode;
 		localStorage.setItem('darkMode', darkMode.toString());
+
+		if (darkMode) {
+			document.body.style.backgroundColor = '#333';
+		} else {
+			document.body.style.backgroundColor = 'white';
+		}
 	}
 
 	function setLanguage(lang: string) {
