@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import type { wordGuess, letterGuess } from '$lib';
+	import type { wordGuess } from '$lib';
 	import { onMount } from 'svelte';
 	import Header from '../../components/Header.svelte';
 	import { supabaseClient } from '$lib/supabase';
@@ -10,6 +10,7 @@
 	let guessList: wordGuess[] = [];
 	let startTime: Date = new Date();
 	const language = (localStorage.getItem('language') as string) || 'english';
+	let wordInputs: HTMLInputElement[] = [];
 
 	let darkMode = false;
 
@@ -21,6 +22,10 @@
 			} else {
 				document.body.style.backgroundColor = 'white';
 			}
+		}
+
+		if (browser) {
+			resetGame();
 		}
 	});
 
@@ -40,6 +45,24 @@
 		getWordList(language);
 		guessList = [];
 		startTime = new Date(Date.now());
+	};
+
+	const handleInputFocus = (event: KeyboardEvent) => {
+		const input = event.target as HTMLInputElement;
+		const nextInput = input.nextElementSibling as HTMLInputElement;
+		const prevInput = input.previousElementSibling as HTMLInputElement;
+
+		if (event.key === 'Backspace' && input.value.length === 0 && prevInput) {
+			prevInput.value = '';
+			prevInput.focus();
+			event.preventDefault();
+			return;
+		}
+
+		if (event.key !== 'Backspace' && input.value.length === 1 && nextInput) {
+			nextInput.focus();
+			return;
+		}
 	};
 
 	function correctWord(wordToGuess: string, guessedWord: string): wordGuess {
@@ -163,10 +186,6 @@
 			return;
 		}
 	};
-
-	if (browser) {
-		resetGame();
-	}
 </script>
 
 <main class:dark={darkMode}>
@@ -199,11 +218,46 @@
 					{/each}
 					<form action="?/checkGuess" method="post" on:submit|preventDefault={checkGuess}>
 						<div class="inputContainer">
-							<input class="wordinput" id="input1" name="input" minlength="1" maxlength="1" />
-							<input class="wordinput" id="input2" name="input" minlength="1" maxlength="1" />
-							<input class="wordinput" id="input3" name="input" minlength="1" maxlength="1" />
-							<input class="wordinput" id="input4" name="input" minlength="1" maxlength="1" />
-							<input class="wordinput" id="input5" name="input" minlength="1" maxlength="1" />
+							<input
+								class="wordinput"
+								id="input1"
+								name="input"
+								minlength="1"
+								maxlength="1"
+								on:keydown={(event) => handleInputFocus(event)}
+							/>
+							<input
+								class="wordinput"
+								id="input2"
+								name="input"
+								minlength="1"
+								maxlength="1"
+								on:keydown={(event) => handleInputFocus(event)}
+							/>
+							<input
+								class="wordinput"
+								id="input3"
+								name="input"
+								minlength="1"
+								maxlength="1"
+								on:keydown={(event) => handleInputFocus(event)}
+							/>
+							<input
+								class="wordinput"
+								id="input4"
+								name="input"
+								minlength="1"
+								maxlength="1"
+								on:keydown={(event) => handleInputFocus(event)}
+							/>
+							<input
+								class="wordinput"
+								id="input5"
+								name="input"
+								minlength="1"
+								maxlength="1"
+								on:keydown={(event) => handleInputFocus(event)}
+							/>
 						</div>
 						<button>Check Guess</button>
 					</form>
