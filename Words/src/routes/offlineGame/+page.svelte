@@ -47,6 +47,12 @@
 		startTime = new Date(Date.now());
 	};
 
+	const focusOnInput = (inputId: number) => {
+		if (wordInputs[inputId]) {
+			wordInputs[inputId].focus();
+		}
+	};
+
 	const handleInputFocus = (event: KeyboardEvent) => {
 		const input = event.target as HTMLInputElement;
 		const nextInput = input.nextElementSibling as HTMLInputElement;
@@ -131,6 +137,7 @@
 		const inputContainer = event.currentTarget.querySelector('.inputContainer') as Element;
 		const inputs = inputContainer.querySelectorAll('input');
 		inputs.forEach((input) => (input.value = ''));
+		focusOnInput(0);
 
 		// update Gui
 		guessList.push(correctedWord);
@@ -193,77 +200,46 @@
 	<div>
 		<h1>
 			Language: {language}
-			<h1>
-				{#if word === ''}
-					<div>No</div>
-				{:else}
-					{#each guessList as guess}
-						<div class="oldGuess">
-							<div class="oldGuessLetter {guess.letters[0].status}">
-								{guess.letters[0].letter}
-							</div>
-							<div class="oldGuessLetter {guess.letters[1].status}">
-								{guess.letters[1].letter}
-							</div>
-							<div class="oldGuessLetter {guess.letters[2].status}">
-								{guess.letters[2].letter}
-							</div>
-							<div class="oldGuessLetter {guess.letters[3].status}">
-								{guess.letters[3].letter}
-							</div>
-							<div class="oldGuessLetter {guess.letters[4].status}">
-								{guess.letters[4].letter}
-							</div>
-						</div>
-					{/each}
-					<form action="?/checkGuess" method="post" on:submit|preventDefault={checkGuess}>
-						<div class="inputContainer">
-							<input
-								class="wordinput"
-								id="input1"
-								name="input"
-								minlength="1"
-								maxlength="1"
-								on:keydown={(event) => handleInputFocus(event)}
-							/>
-							<input
-								class="wordinput"
-								id="input2"
-								name="input"
-								minlength="1"
-								maxlength="1"
-								on:keydown={(event) => handleInputFocus(event)}
-							/>
-							<input
-								class="wordinput"
-								id="input3"
-								name="input"
-								minlength="1"
-								maxlength="1"
-								on:keydown={(event) => handleInputFocus(event)}
-							/>
-							<input
-								class="wordinput"
-								id="input4"
-								name="input"
-								minlength="1"
-								maxlength="1"
-								on:keydown={(event) => handleInputFocus(event)}
-							/>
-							<input
-								class="wordinput"
-								id="input5"
-								name="input"
-								minlength="1"
-								maxlength="1"
-								on:keydown={(event) => handleInputFocus(event)}
-							/>
-						</div>
-						<button>Check Guess</button>
-					</form>
-				{/if}
-			</h1>
 		</h1>
+		{#if word === ''}
+			<div>No</div>
+		{:else}
+			{#each guessList as guess}
+				<div class="oldGuess">
+					<div class="oldGuessLetter {guess.letters[0].status}">
+						{guess.letters[0].letter}
+					</div>
+					<div class="oldGuessLetter {guess.letters[1].status}">
+						{guess.letters[1].letter}
+					</div>
+					<div class="oldGuessLetter {guess.letters[2].status}">
+						{guess.letters[2].letter}
+					</div>
+					<div class="oldGuessLetter {guess.letters[3].status}">
+						{guess.letters[3].letter}
+					</div>
+					<div class="oldGuessLetter {guess.letters[4].status}">
+						{guess.letters[4].letter}
+					</div>
+				</div>
+			{/each}
+			<form action="?/checkGuess" method="post" on:submit|preventDefault={checkGuess}>
+				<div class="inputContainer">
+					{#each Array.from({ length: 5 }) as _, index}
+						<input
+							class="wordinput"
+							bind:this={wordInputs[index]}
+							id={'input' + (index + 1)}
+							name="input"
+							minlength="1"
+							maxlength="1"
+							on:keydown={(event) => handleInputFocus(event)}
+						/>
+					{/each}
+				</div>
+				<button>Check Guess</button>
+			</form>
+		{/if}
 	</div>
 </main>
 
