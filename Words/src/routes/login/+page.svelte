@@ -57,7 +57,7 @@
 	:global(body) {
 		margin: 0;
 		font-family: Arial, sans-serif;
-		height: 100%;
+		height: 100vh;
 	}
 
 	main {
