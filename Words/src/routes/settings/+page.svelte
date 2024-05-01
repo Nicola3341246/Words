@@ -23,7 +23,8 @@
 		}
 	}
 
-	function setLanguage(lang: string) {
+	function setLanguage(event: Event) {
+		const lang = (event.target as HTMLSelectElement).value;
 		language = lang;
 		localStorage.setItem('language', lang);
 	}
@@ -31,7 +32,7 @@
 
 <main class:dark={darkMode}>
 	<Header />
-	<select on:change={(e) => setLanguage(e.target.value)}>
+	<select on:change={(event) => setLanguage(event)}>
 		<option value="english" selected={language === 'english'}>English</option>
 		<option value="german" selected={language === 'german'}>German</option>
 	</select>
