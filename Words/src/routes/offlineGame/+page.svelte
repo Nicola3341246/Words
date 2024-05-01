@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import type { wordGuess, letterGuess } from '$lib';
-	import { onMount } from 'svelte';
+	import type { wordGuess } from '$lib';
+	import { onMount, afterUpdate } from 'svelte';
 	import Header from '../../components/Header.svelte';
 	import { supabaseClient } from '$lib/supabase';
 	import type { IScore } from '$lib/types';
@@ -10,6 +10,7 @@
 	let guessList: wordGuess[] = [];
 	let startTime: Date = new Date();
 	const language = (localStorage.getItem('language') as string) || 'english';
+	let wordInputs: HTMLInputElement[] = [];
 
 	let darkMode = false;
 
@@ -22,6 +23,14 @@
 				document.body.style.backgroundColor = 'white';
 			}
 		}
+
+		if (browser) {
+			resetGame();
+		}
+	});
+
+	afterUpdate(() => {
+		focusOnInput(0);
 	});
 
 	const getWordList = async (language: string) => {
@@ -40,6 +49,30 @@
 		getWordList(language);
 		guessList = [];
 		startTime = new Date(Date.now());
+	};
+
+	const focusOnInput = (inputId: number) => {
+		if (wordInputs[inputId]) {
+			wordInputs[inputId].focus();
+		}
+	};
+
+	const handleInputFocus = (event: KeyboardEvent) => {
+		const input = event.target as HTMLInputElement;
+		const nextInput = input.nextElementSibling as HTMLInputElement;
+		const prevInput = input.previousElementSibling as HTMLInputElement;
+
+		if (event.key === 'Backspace' && input.value.length === 0 && prevInput) {
+			prevInput.value = '';
+			prevInput.focus();
+			event.preventDefault();
+			return;
+		}
+
+		if (event.key !== 'Backspace' && input.value.length === 1 && nextInput) {
+			nextInput.focus();
+			return;
+		}
 	};
 
 	function correctWord(wordToGuess: string, guessedWord: string): wordGuess {
@@ -108,6 +141,7 @@
 		const inputContainer = event.currentTarget.querySelector('.inputContainer') as Element;
 		const inputs = inputContainer.querySelectorAll('input');
 		inputs.forEach((input) => (input.value = ''));
+		focusOnInput(0);
 
 		// update Gui
 		guessList.push(correctedWord);
@@ -163,10 +197,6 @@
 			return;
 		}
 	};
-
-	if (browser) {
-		resetGame();
-	}
 </script>
 
 <main class:dark={darkMode}>
@@ -174,42 +204,46 @@
 	<div>
 		<h1>
 			Language: {language}
-			<h1>
-				{#if word === ''}
-					<div>No</div>
-				{:else}
-					{#each guessList as guess}
-						<div class="oldGuess">
-							<div class="oldGuessLetter {guess.letters[0].status}">
-								{guess.letters[0].letter}
-							</div>
-							<div class="oldGuessLetter {guess.letters[1].status}">
-								{guess.letters[1].letter}
-							</div>
-							<div class="oldGuessLetter {guess.letters[2].status}">
-								{guess.letters[2].letter}
-							</div>
-							<div class="oldGuessLetter {guess.letters[3].status}">
-								{guess.letters[3].letter}
-							</div>
-							<div class="oldGuessLetter {guess.letters[4].status}">
-								{guess.letters[4].letter}
-							</div>
-						</div>
-					{/each}
-					<form action="?/checkGuess" method="post" on:submit|preventDefault={checkGuess}>
-						<div class="inputContainer">
-							<input class="wordinput" id="input1" name="input" minlength="1" maxlength="1" />
-							<input class="wordinput" id="input2" name="input" minlength="1" maxlength="1" />
-							<input class="wordinput" id="input3" name="input" minlength="1" maxlength="1" />
-							<input class="wordinput" id="input4" name="input" minlength="1" maxlength="1" />
-							<input class="wordinput" id="input5" name="input" minlength="1" maxlength="1" />
-						</div>
-						<button>Check Guess</button>
-					</form>
-				{/if}
-			</h1>
 		</h1>
+		{#if word === ''}
+			<div>No</div>
+		{:else}
+			{#each guessList as guess}
+				<div class="oldGuess">
+					<div class="oldGuessLetter {guess.letters[0].status}">
+						{guess.letters[0].letter}
+					</div>
+					<div class="oldGuessLetter {guess.letters[1].status}">
+						{guess.letters[1].letter}
+					</div>
+					<div class="oldGuessLetter {guess.letters[2].status}">
+						{guess.letters[2].letter}
+					</div>
+					<div class="oldGuessLetter {guess.letters[3].status}">
+						{guess.letters[3].letter}
+					</div>
+					<div class="oldGuessLetter {guess.letters[4].status}">
+						{guess.letters[4].letter}
+					</div>
+				</div>
+			{/each}
+			<form action="?/checkGuess" method="post" on:submit|preventDefault={checkGuess}>
+				<div class="inputContainer">
+					{#each Array.from({ length: 5 }) as _, index}
+						<input
+							class="wordinput"
+							bind:this={wordInputs[index]}
+							id={'input' + (index + 1)}
+							name="input"
+							minlength="1"
+							maxlength="1"
+							on:keydown={(event) => handleInputFocus(event)}
+						/>
+					{/each}
+				</div>
+				<button>Check Guess</button>
+			</form>
+		{/if}
 	</div>
 </main>
 
