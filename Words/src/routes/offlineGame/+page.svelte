@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import type { wordGuess } from '$lib';
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 	import Header from '../../components/Header.svelte';
 	import { supabaseClient } from '$lib/supabase';
 	import type { IScore } from '$lib/types';
@@ -27,6 +27,10 @@
 		if (browser) {
 			resetGame();
 		}
+	});
+
+	afterUpdate(() => {
+		focusOnInput(0);
 	});
 
 	const getWordList = async (language: string) => {
