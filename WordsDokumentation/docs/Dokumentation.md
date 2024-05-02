@@ -7,63 +7,63 @@ Das ist die Dokumentation unseres [Projekts](https://github.com/Nicola3341246/Wo
 
 ### Inhaltsverzeichnis
 
-- [Dokumentation](#dokumentation)
-  - [Inhaltsverzeichnis](#inhaltsverzeichnis)
-  - [IPERKA](#iperka)
-    - [Informieren](#informieren)
-    - [Planen](#planen)
-    - [Entscheiden](#entscheiden)
-    - [Realisieren](#realisieren)
-    - [Kontrollieren](#kontrollieren)
-    - [Auswerten](#auswerten)
-  - [Einleitung](#einleitung)
-  - [Technologien](#technologien)
-  - [Quellen](#quellen)
-  - [Lokale Entwicklungsumgebung](#lokale-entwicklungsumgebung)
-    - [Lokale Entwicklungsumgebung aufsetzen](#lokale-entwicklungsumgebung-aufsetzen)
-      - [Vorbereitung](#vorbereitung)
-      - [Dependencies mit NPM installieren](#dependencies-mit-npm-installieren)
-      - [Projekt starten](#projekt-starten)
-  - [Anforderungen](#anforderungen)
-  - [Ausführung](#ausführung)
-    - [Testumgebungen](#testumgebungen)
-      - [Manuell (Per Hand):](#manuell-per-hand)
-  - [Testfälle](#testfälle)
-    - [Testprotokoll](#testprotokoll)
-    - [Testbericht](#testbericht)
-  - [Projektauswertung](#projektauswertung)
+-   [Dokumentation](#dokumentation)
+    -   [Inhaltsverzeichnis](#inhaltsverzeichnis)
+    -   [IPERKA](#iperka)
+        -   [Informieren](#informieren)
+        -   [Planen](#planen)
+        -   [Entscheiden](#entscheiden)
+        -   [Realisieren](#realisieren)
+        -   [Kontrollieren](#kontrollieren)
+        -   [Auswerten](#auswerten)
+    -   [Einleitung](#einleitung)
+    -   [Technologien](#technologien)
+    -   [Quellen](#quellen)
+    -   [Lokale Entwicklungsumgebung](#lokale-entwicklungsumgebung)
+        -   [Lokale Entwicklungsumgebung aufsetzen](#lokale-entwicklungsumgebung-aufsetzen)
+            -   [Vorbereitung](#vorbereitung)
+            -   [Dependencies mit NPM installieren](#dependencies-mit-npm-installieren)
+            -   [Projekt starten](#projekt-starten)
+    -   [Anforderungen](#anforderungen)
+    -   [Ausführung](#ausführung)
+        -   [Testumgebungen](#testumgebungen)
+            -   [Manuell (Per Hand):](#manuell-per-hand)
+    -   [Testfälle](#testfälle)
+        -   [Testprotokoll](#testprotokoll)
+        -   [Testbericht](#testbericht)
+    -   [Projektauswertung](#projektauswertung)
 
 ## IPERKA
 
 ### Informieren
 
-- [Einleitung](#einleitung)
-- [Technologien](#technologien)
-- [Quellen](#quellen)
-- [Anforderungen](#anforderungen)
+-   [Einleitung](#einleitung)
+-   [Technologien](#technologien)
+-   [Quellen](#quellen)
+-   [Anforderungen](#anforderungen)
 
 ### Planen
 
-- [Testfälle](#testfälle)
-- [Arbeitspakete](#arbeitspakete)
+-   [Testfälle](#testfälle)
+-   [Arbeitspakete](#arbeitspakete)
 
 ### Entscheiden
 
-- [Technologien](#technologien)
+-   [Technologien](#technologien)
 
 ### Realisieren
 
-- [Ausführung](#ausführung)
+-   [Ausführung](#ausführung)
 
 ### Kontrollieren
 
-- [Testfälle](#testfälle)
-- [Tesprotokoll](#testprotokoll)
-- [Testbericht](#testbericht)
+-   [Testfälle](#testfälle)
+-   [Tesprotokoll](#testprotokoll)
+-   [Testbericht](#testbericht)
 
 ### Auswerten
 
-- [Projektauswertung](#projektauswertung)
+-   [Projektauswertung](#projektauswertung)
 
 ## Einleitung
 
@@ -73,24 +73,26 @@ Für dieses Projekt haben wir uns dafür entschieden, dass wir einen Wordle-Klon
 
 Für Words verwenden wir folgende Technologien:
 
-- [TypeScript](https://www.typescriptlang.org/)
-- [ESLint](https://eslint.org)
-- [Prettier](https://prettier.io)
-- [Docusaurus](https://docusaurus.io/)
-- [Git](https://git-scm.com/doc)
-- [GitHub](https://docs.github.com/en)
-- [SvelteKit](https://kit.svelte.dev/)
-- ### Hosts:
-- [Supabase für das Hosten der Datenbank](https://supabase.com/)
-- [Netlify für das Hosten der Website der Dokumentation](https://www.netlify.com/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [ESLint](https://eslint.org)
+-   [Prettier](https://prettier.io)
+-   [Docusaurus](https://docusaurus.io/)
+-   [Git](https://git-scm.com/doc)
+-   [GitHub](https://docs.github.com/en)
+-   [SvelteKit](https://kit.svelte.dev/)
+
+### Hosts:
+
+-   [Supabase für das Hosten der Datenbank](https://supabase.com/)
+-   [Netlify für das Hosten der Website der Dokumentation](https://www.netlify.com/)
 
 ## Quellen
 
-- [Docusaurus Dokumentation](https://docusaurus.io/docs)
-- [SvelteKit Dokumentation](https://kit.svelte.dev/docs/introduction)
-- [Supabase mit SvelteKit Dokumentation](https://supabase.com/docs/guides/getting-started/quickstarts/sveltekit)
-- [Englische Wörterliste](https://gist.github.com/scholtes/94f3c0303ba6a7768b47583aff36654d)
-- [Deutsche Wörterliste nur 5 buchstabige](https://gist.githubusercontent.com/MarvinJWendt/2f4f4154b8ae218600eb091a5706b5f4/raw/36b70dd6be330aa61cd4d4cdfda6234dcb0b8784/wordlist-german.txt)
+-   [Docusaurus Dokumentation](https://docusaurus.io/docs)
+-   [SvelteKit Dokumentation](https://kit.svelte.dev/docs/introduction)
+-   [Supabase mit SvelteKit Dokumentation](https://supabase.com/docs/guides/getting-started/quickstarts/sveltekit)
+-   [Englische Wörterliste](https://gist.github.com/scholtes/94f3c0303ba6a7768b47583aff36654d)
+-   [Deutsche Wörterliste nur 5 buchstabige](https://gist.githubusercontent.com/MarvinJWendt/2f4f4154b8ae218600eb091a5706b5f4/raw/36b70dd6be330aa61cd4d4cdfda6234dcb0b8784/wordlist-german.txt)
 
 ## Lokale Entwicklungsumgebung
 
@@ -190,7 +192,7 @@ Arbeitspakete \* Sitzungen \* Gruppenmitglieder
 
 | Nr. | Frist      | Bemerkung                                                                                                                                                                                                                                                                               | Zeit (geplant) | Zeit (effektiv) |
 | :-- | :--------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | --------------- |
-| 1   | 14.03.2024 | Wir hatten viele Ideen, aber wir konnten uns nicht so schnell bei der "Worlde-Idee" einigen. Ansonsten gab es keine Probleme.                                                                                                                                                           | 10             | 10              |
+| 1   | 14.03.2024 | Wir hatten viele Ideen, aber wir konnten uns nicht so schnell auf die "Worlde-Idee" einigen. Ansonsten gab es keine Probleme.                                                                                                                                                           | 10             | 10              |
 | 2   | 14.03.2024 | Wir haben die Planung erstellt und die wichtigen Entscheidungen getroffen. Wir hatten Probleme uns auf die Technologie SvelteKit zu einigen, weil einige Gruppenmitglieder schlechte Erfahrungen damit gemacht haben. Allerdings gab es beim Aufsetzen des Repos keine Probleme.        | 8              | 8               |
 | 3   | 21.03.2024 | Wir sind gut im Plan und wir konnten unsere Ziele erreichen, allerdings verlief die Implementation teilweise ein wenig holprig.                                                                                                                                                         | 20             | 20              |
 | 4   | 28.03.2024 | Wir sind in Verzögerung geraten, weil wir nicht so bei der Sache waren und wir uns gegenseitig noch viel helfen mussten mit SvelteKit.                                                                                                                                                  | 20             | 22              |
@@ -299,4 +301,4 @@ Alle Testfälle konnten erfolgreich getestet werden und die Applikation muss nic
 
 ## Projektauswertung
 
-Am Anfang des Projekts haben wir den Informieren-Schritt von IPERKA auf die leichte Schulter genommen und damit beim Realisieren-Schritt von IPERKA dann Zeit verloren, weil unsere deutsche Wörterliste falsch war und wir dies nicht bemerkt haben, deshalb mussten wir dann ein Bash-Script schreiben, um beispielsweise die zu langen Wörter zu entfernen. Zusätzlich waren wir nicht so produktiv, wie wir es sein hätten können, da wir uns während diesem Projekt ein wenig selbst abgelenkt haben und uns somit gegenseitig von der Arbeit abgehalten haben.
+Am Anfang des Projekts haben wir den Informieren-Schritt von IPERKA auf die leichte Schulter genommen und damit beim Realisieren-Schritt von IPERKA dann Zeit verloren, weil unsere deutsche Wörterliste falsch war und wir dies nicht bemerkt haben, deshalb mussten wir dann ein Bash-Script schreiben, um beispielsweise die zu langen Wörter zu entfernen. Zusätzlich waren wir nicht so produktiv, wie wir es hätten sein können, da wir uns während diesem Projekt ein wenig selbst abgelenkt haben und uns somit gegenseitig von der Arbeit abgehalten haben.
