@@ -3,12 +3,7 @@ import type { RequestHandler } from "@sveltejs/kit";
 import type { wordlist } from "$lib/index";
 import worldeList from "./wordlist-english.json?raw"
 
-export const GET: RequestHandler = async ({ url }) => {
-    const one = 1;
-    if(1 != one) {
-        return error(400, "One is not equal to one" + url);
-    }
-
+export const GET: RequestHandler = async () => {
     if (!worldeList){
         return error(201, "No wordlist");
     }
