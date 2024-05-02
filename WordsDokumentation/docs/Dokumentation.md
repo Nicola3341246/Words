@@ -71,9 +71,10 @@ Für dieses Projekt haben wir uns dafür entschieden, dass wir einen Wordle-Klon
 
 ## Technologien
 
-Für Words verwenden wir folgende Technologien:
+Für TaskHub verwenden wir folgende Technologien:
 
-- [TypeScript](https://www.typescriptlang.org/)
+- [JavaScript(jsx)](https://www.javascript.com/)
+- [TypeScript(tsx)](https://www.typescriptlang.org/)
 - [ESLint](https://eslint.org)
 - [Prettier](https://prettier.io)
 - [Docusaurus](https://docusaurus.io/)
@@ -100,7 +101,7 @@ Für Words verwenden wir folgende Technologien:
 
 Für die Realisierung dieses Projekts haben wir Visual Studio Code mit wenigen Erweiterungen, und zwar ESLint, Prettier und Live Share verwendet. Bei der Live Share-Erweiterung haben wir keine speziellen Einstellungen vorgenommen, wobei wir bei der Erweiterung Prettier und ESLint eine eigene Konfiguration erstellt haben, um unsere eigenen Code-Konventionen zu erzwingen. Diese Einstellungen werden automatisch übernommen, insofern man die eine Erweiterung installiert hat und die Entwicklungsumgebung aufgesetzt hat.
 
-Um die lokale Entwicklungsumgebung aufzusetzen, muss man sich zuerst eine Kopie vom Repository, von der [offiziellen Quelle](https://github.com/Nicola3341246/Words) holen.
+Um die lokale Entwicklungsumgebung aufzusetzen, muss man sich zuerst eine Kopie vom Repository, von der [offiziellen Quelle](https://github.com/RelxOff/TaskHub) holen.
 
 Dies kann man tun, indem man eine eigene Kopie von dem Repository erstellt (forkt), damit man später seine Änderungen auch bei GitHub pushen kann, auch wenn man kein Contributor ist.
 
@@ -109,8 +110,8 @@ _Dadurch kann man auch die eigenen Änderungen im offiziellen Repository eingbri
 Wenn das Repository erfolgreich geforkt wurde, muss man das Repository klonen und in dessen Verzeichnis wechseln.
 
 ```shell
-git clone https://github.com/[deinBenutzername]/Words.git
-cd Words/
+git clone https://github.com/[deinBenutzername]/TaskHub.git
+cd Taskhub/
 ```
 
 #### Dependencies mit NPM installieren
@@ -122,7 +123,7 @@ Für diesen Schritt ist es notwendig, die node.js-Runtime installiert zu haben. 
 Nachdem man das Projekt geklont hat, sollte man alle Dependencies installieren. Dabei muss man in das entsprechende Verzeichnis wechseln und die Abhängigkeiten installieren.
 
 ```bash
-§cd Words/ #Falls man noch nicht im richtigen Verzeichnis ist
+§cd TaskHub/ #Falls man noch nicht im richtigen Verzeichnis ist
 npm i
 cd ..
 ```
@@ -134,7 +135,7 @@ Für diesen Schritt ist es notwendig, die [Dependencies installiert](#Dependenci
 :::
 
 ```bash
-cd Words/ # Falls man noch nicht im richtigen Verzeichnis ist
+cd TaskHub/ # Falls man noch nicht im richtigen Verzeichnis ist
 npm run start
 ```
 
@@ -146,16 +147,16 @@ Für dieses Projekt muss man selber das Backend starten und hosten, da wir es ni
 
 ```bash
 npm i
+npm i jsonwebtoken
 npm run dev
 ```
 
-Falls das Backend nicht auf http://localhost:5173/ gehostet wird muss man dies im Code umändern.
+Falls das Backend nicht auf http://localhost:8080/ gehostet wird muss man dies im Code umändern.
 
 :::
 
 ## Anforderungen
 
-<<<<<<< HEAD
 
 | Anf.-Nr. | Muss/<br />Kann | funk./<br />qual. | Beschreibung                                                                                                                 |
 | :--------- | :---------------- | ------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
@@ -173,24 +174,6 @@ Falls das Backend nicht auf http://localhost:5173/ gehostet wird muss man dies i
 | 12       | Muss            | funk.             | Von jedem Spieler wird die Ratezeit in eine Rangliste eingetragen                                                            |
 | 13       | Muss            | funk.             | Der Spieler soll sich die Rangliste auf der Startseite anschauen können                                                     |
 | 14       | Muss            | funk.             | Wenn der Spieler das Wort richtig erraten hat, soll das Spiel automatisch neu starten                                        |
-=======
-| Anf.-Nr. | Muss/<br />Kann | funk./<br />qual. | Beschreibung                                                                                                                |
-| :------- | :-------------- | ----------------- | :-------------------------------------------------------------------------------------------------------------------------- |
-| 1.       | Muss            | funk.             | Das Spiel soll ein Login haben.                                                                                             |
-| 1.       | Muss            | funk.             | Das Spiel soll drei Unterseiten haben, eine Startseite, eine Spielseite und eine Seite für Sprach- und Designeinstellungen. |
-| 1.       | Muss            | funk.             | Auf der Startseite, soll der Benutzer das Spiel starten können oder auf die Einstellungen wechseln können                   |
-| 1.       | Muss            | funk.             | In den Einstellungen soll der Benutzer die Sprache des Spiels ändern können                                                 |
-| 1.       | Muss            | funk.             | In den Einstellungen soll der Benutzer einen Dark und Light Modus einstellen können.                                        |
-| 1.       | Muss            | funk.             | Das Spiel soll auf Englisch und auf Deutsch gespielt werden können                                                          |
-| 1.       | Muss            | funk.             | Wenn der Benutzer auf das Spiel startet hat er unendliche Rateversuche.                                                     |
-| 1.       | Muss            | funk.             | Der Spieler soll in Felder schreiben können, um das Wort zu erraten                                                         |
-| 1.       | Muss            | funk.             | Wenn der Spieler ein Buchstaben richtig hat, soll dieser gelb angezeigt werden                                              |
-| 1.       | Muss            | funk.             | Wenn der Spieler einen Buchstaben richtig hat und er an der richtigen Stelle steht, soll er grün angezeigt werden           |
-| 1.       | Muss            | funk.             | Die Ratezeit soll gemessen und in einer Rangliste eingetragen werden                                                        |
-| 1.       | Muss            | funk.             | Von jedem Spieler wird die Ratezeit in eine Rangliste eingetragen                                                           |
-| 1.       | Muss            | funk.             | Es soll eine Rangliste geben, bei der die Spieler sich messen können.                                                       |
-| 1.       | Muss            | funk.             | Wenn der Spieler das Wort richtig erraten hat, soll automatisch das Spiel neu starten.                                      |
->>>>>>> 80b7eff2cc08a9fdda14771713998c92fea83e5d
 
 :::info
 1x Arbeitspaket = 45 Minuten (eine Schullektion) <br />
@@ -202,8 +185,8 @@ Arbeitspakete \* Sitzungen \* Gruppenmitglieder
 5 \* 6 \* 4 + 16 = 136 Arbeitpakete
 :::
 
+
 | Nr. | Frist      | Beschreibung                                           | Zeit in Arbeitspaketen (geplant) |
-<<<<<<< HEAD
 | ----- | ------------ | -------------------------------------------------------- | ---------------------------------- |
 | 1   | 14.03.2024 | Informieren (von IPERKA)                               | 8                                |
 | 2   | 21.03.2024 | Planen und Entscheiden (von IPERKA)                    | 8                                |
@@ -214,23 +197,10 @@ Arbeitspakete \* Sitzungen \* Gruppenmitglieder
 | 6   | 25.04.2024 | Realisieren (von IPERKA) der Anforderungen Nr. 15 - 21 | 20                               |
 | 7   | 02.05.2024 | Kontrollieren (von IPERKA)                             | 12                               |
 | 8   | 02.05.2024 | Auswerten (von IPERKA)                                 | 8                                |
-=======
-| --- | ---------- | ------------------------------------------------------ | -------------------------------- |
-| 1   | 14.03.2024 | Informieren (von IPERKA)                               | 20                               |
-| 2   | 21.03.2024 | Planen und Entscheiden (von IPERKA)                    | 18                               |
-| 3   | 21.03.2024 | GitHub Repository aufsetzen                            | 2                                |
-| 3   | 28.03.2024 | Realisieren (von IPERKA) der Anforderungen Nr. 1 - 4   |                                  |
-| 4   | 04.04.2024 | Realisieren (von IPERKA) der Anforderungen Nr. 5 - 10  |                                  |
-| 5   | 25.04.2024 | Realisieren (von IPERKA) der Anforderungen Nr. 10 - 15 |                                  |
-| 6   | 25.04.2024 | Realisieren (von IPERKA) der Anforderungen Nr. 15 - 21 |                                  |
-| 7   | 02.05.2024 | Kontrollieren (von IPERKA)                             | 10                               |
-| 8   | 02.05.2024 | Auswerten (von IPERKA)                                 | 10                               |
->>>>>>> 80b7eff2cc08a9fdda14771713998c92fea83e5d
 | 9   | 02.05.2024 | Portfolioeintrag fertigstellen                         | 16                               |
 
 ## Ausführung
 
-<<<<<<< HEAD
 
 | Nr. | Frist      | Bemerkung                                              | Zeit (geplant) | Zeit (effektiv) |
 | :---- | :----------- | -------------------------------------------------------- | ---------------- | ----------------- |
@@ -247,17 +217,6 @@ Arbeitspakete \* Sitzungen \* Gruppenmitglieder
 
 
 ## Testfälle
-=======
-| Nr. | Frist      | Bemerkung                                                                                                                                                                                                                                                                                                                                                                 | Zeit (geplant) | Zeit (effektiv) |
-| :-- | :--------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | --------------- |
-| 1   | 09.11.2023 | Wir hatten schnell sehr viele gute Ideen, aber hatten Mühe uns zu einigen. Letztendlich konnten wir uns aber noch im Zeitrahmen einigen.                                                                                                                                                                                                                                  | 10             | 10              |
-| 2   | 16.11.2023 | Wir haben die Planung erstellt und die wichtigen Entscheidungen getroffen. Wir hatten Probleme damit uns bei den Technologien zu einigen, da zwei Gruppenmitglieder an der Machbarkeit gezweifelt haben. Um uns zu einigen, haben wir das Problem in kleine Teile aufgeteilt und alle haben erkannt, dass es machbar ist. Beim Aufsetzen des Repos gab es keine Probleme. | 20             | 18              |
-| 3.  | 23.11.2023 | Wir waren sogar ein wenig weiter als geplant, aber einer von uns war nicht da und irgendwie hat npm i nicht funktioniert wie es sollte und wir haben, nachdem das Projekt nicht richtig funktioniert, haben wir es neu aufgesetzt.                                                                                                                                        | 20             | 22              |
-| 4.  | 30.11.2023 | Wir haben das Frontend realisiert mit den verschiedenen Unterseiten, aber nich nicht ganz vollständig                                                                                                                                                                                                                                                                     | 20             | 24              |
-| 5.  | 07.12.2023 | Wir haben das Backend umgesetzt und am Ende gemrekt, dass man noch mehr Sachen braucht um Daten zu erstellen.                                                                                                                                                                                                                                                             | 20             | 30              |
-| 6.  | 14.12.2023 | Wir haben die letzten Unterseiten erstellt und die API-Calls implementiert und die letzten Denkfehler und noch nicht fertigen API-Calls gemacht.                                                                                                                                                                                                                          | 20             | 36              |
-| 7.  | 21.12.2023 | Wir haben die Testfälle durchgeführt und diese auch direkt ausgewertet, aber wir haben auch unser Portfolio geschrieben.                                                                                                                                                                                                                                                  | 36             | 36              |
->>>>>>> 80b7eff2cc08a9fdda14771713998c92fea83e5d
 
 ### Testumgebungen
 
@@ -267,24 +226,18 @@ Wir verwenden für alle Testfälle eine Testumgebung:
 
 **Betriebssystem:**
 
-Der Browser, mit dem wir die Tests in dem wir die Tests manuell testen, wird auf Microsoft Widnows 11 (**23H2** **Build: 22631.3447**) ausgeführt.
+Der Browser, mit dem wir die Tests in dem wir die Tests manuell testen, wird auf Microsoft Widnows 10 (**22H2** **_Build: 19045.3693_**) ausgeführt.
 
 **Browser:**
 
-Für den Browser verwenden wir die neuste Version von Mozilla Firefox (125.02).
+Für den Browser verwenden wir die neuste Version von Mozilla Firefox (120).
 
 
-<<<<<<< HEAD
 
-| Testf.-Nr. | Anforderung | Voraussetzung            | Eingabe | Erw. Ausgabe |
-| :----------- | ------------- | -------------------------- | --------- | -------------- |
-| 1.0.1      | 1           | Webapplikation gestartet |         |              |
-| 1.0.2      | 2           |                          |         |              |
-=======
-| Testf.-Nr. | Anforderung | Voraussetzung            | Testumgebung | Eingabe | Erw. Ausgabe |
-| ---------- | ----------- | ------------------------ | ------------ | ------- | ------------ |
-| 1.0.1      | 1           | Webapplikation gestartet | Per Hand     |         |              |
->>>>>>> 80b7eff2cc08a9fdda14771713998c92fea83e5d
+| Testf.-Nr. | Anforderung | Voraussetzung            | Eingabe | Erw. Ausgabe               |
+| :----------- | ------------- | -------------------------- | --------- | ---------------------------- |
+| 1.1.1      | 1           | Webapplikation gestartet | Keine   | Login fenster öffnet sich |
+| 1.1.2      | 1           |                          |         |                            |
 
 ### Testprotokoll
 
@@ -296,13 +249,14 @@ Für den Browser verwenden wir die neuste Version von Mozilla Firefox (125.02).
 
 :::
 
+
 | Test-Nr | Bericht | Tester                                             |
-| ------- | ------- | -------------------------------------------------- |
+| --------- | --------- | ---------------------------------------------------- |
 | 1.1     | OK      | @titepasile , @Nicola3341246, @sanqro und @RelxOff |
 
 ### Testbericht
 
-Alle Testfälle konnten erfolgreich getestet werden und die Applikation muss nicht mehr überarbeitet werden.
+Es gehen sehr viel Testfälle nicht, da manchmal nur der Teil für das Backend existiert und daher kann das Projekt so nicht dem Kunden übergeben werden.
 
 ## Projektauswertung
 
